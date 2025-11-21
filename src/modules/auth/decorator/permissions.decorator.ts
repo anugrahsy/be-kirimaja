@@ -3,6 +3,7 @@ import { SetMetadata } from '@nestjs/common';
 export const PERMISSIONS_KEY = 'permissions';
 
 export const RequirePermissions = (...permissions: string[]) => {
+    console.log('apa permission', permissions);
     return SetMetadata(PERMISSIONS_KEY, { type: 'basic', permissions });
 }
 

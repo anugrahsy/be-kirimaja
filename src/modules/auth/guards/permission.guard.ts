@@ -2,6 +2,7 @@ import { PermissionsService } from "src/modules/permissions/permissions.service"
 import { PERMISSIONS_KEY } from "../decorator/permissions.decorator";
 import { CanActivate, ExecutionContext, ForbiddenException, Injectable } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
+import { console } from "inspector";
 
 @Injectable()
 
@@ -17,12 +18,15 @@ export class PermissionGuard implements CanActivate {
             [context.getHandler(), context.getClass()],
         );
 
+        console.log('apa permission', requiredPermissions);
+
         if (!requiredPermissions) {
             return true;  
         }
 
         const request = context.switchToHttp().getRequest();
         const user = request.user;
+        
 
         if (!user) {
             throw new ForbiddenException('User is not authenticated');
@@ -46,7 +50,14 @@ export class PermissionGuard implements CanActivate {
                     user.id,
                     permissions,
                 );
-            } 
+            } else if ( type === 'basic') {
+                hasPermission = await this.permissionService.userHasPermission(
+                    user.id,
+                    permissions,
+                );
+
+            }
+
 
             if (!hasPermission){
                 throw new ForbiddenException(

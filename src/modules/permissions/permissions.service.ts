@@ -6,7 +6,7 @@ import { PrismaService } from 'src/common/prisma/prisma.service';
 @Injectable()
 export class PermissionsService {
 
-  constructor(private prismaService: PrismaService) {}
+  constructor(private prismaService: PrismaService) { }
 
   async findAll(): Promise<Permission[]> {
     return await this.prismaService.permission.findMany();
@@ -19,11 +19,13 @@ export class PermissionsService {
         role: {
           include: {
             rolePermissions: {
-              include: { permission: true },
-            },
-          },
-        },
-      },
+              include: {
+                permission: true
+              }
+            }
+          }
+        }
+      }
     });
 
     if (!user) return [];

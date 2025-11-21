@@ -1,0 +1,19 @@
+{
+    "data": [
+        {
+            "name": "Cabang Jakarta Pusat",
+            "address": "Jl. Raya Kebon Jeruk, Jakarta Pusat",
+            "phoneNumber": "08123456789"
+        },
+        {
+            "name": "Cabang Surabaya",
+            "address": "Jl. Pemuda no. 45, ",
+            "phoneNumber": "08123456105"
+        },
+        {
+            "name": "Cabang Bandung",
+            "address": "Jl. Silapt no. 45, ",
+            "phoneNumber": "08123456101"
+        }
+    ]
+}
